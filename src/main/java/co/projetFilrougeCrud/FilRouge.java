@@ -3,7 +3,7 @@ package co.projetFilrougeCrud;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication
+@SpringBootApplication (scanBasePackages= "co.projetFilrougeCrud")
 public class FilRouge {
 
 	public static void main(String[] args) {

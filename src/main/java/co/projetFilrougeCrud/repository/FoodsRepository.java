@@ -3,12 +3,14 @@ package co.projetFilrougeCrud.repository;
 import java.util.List;
 import java.util.Optional;
 
+import javax.inject.Named;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
 
 import co.projetFilrougeCrud.model.Foods;
 
-
+@Named
 public interface FoodsRepository extends JpaRepository<Foods, Long> {
 	
 	List<Foods> findByName(String name);

@@ -7,11 +7,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.lang.NonNull;
 
 @Entity
 @Table(name = "FOODS")
@@ -27,8 +29,8 @@ public class Foods {
 	private String name;
 
 	@ManyToOne
-	@Column(name = "GROUP")
-	private Group group;
+	@NonNull
+	private FoodsGroup group;
 
 	@Column(name = "GLYCINDEX")
 	public float glycIndex;
@@ -65,7 +67,7 @@ public class Foods {
 		this.name = name;
 	}
 
-	public Foods(Long id, String name, Group group, float glycIndex, float energy, float carbohydrates, float proteins,
+	public Foods(Long id, String name, FoodsGroup group, float glycIndex, float energy, float carbohydrates, float proteins,
 			float lipids, String comment) {
 		this.id = id;
 		this.name = name;
@@ -144,7 +146,7 @@ public class Foods {
 
 	@Override
 	public String toString() {
-		return "Foods [id=" + id + ", name=" + name + ", group=" + group + ", glycIndex=" + glycIndex + ", energy="
+		return "Foods [id=" + id + ", name=" + name + ", group= , glycIndex=" + glycIndex + ", energy="
 				+ energy + ", carbohydrates=" + carbohydrates + ", proteins=" + proteins + ", lipids=" + lipids
 				+ ", comment=" + comment + ", createDate=" + createDate + "]";
 	}
