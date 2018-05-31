@@ -1,5 +1,6 @@
 package co.projetFilrougeCrud.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -9,9 +10,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+
 
 @Entity
 @Table(name = "FOODSGROUP")
@@ -42,9 +46,12 @@ public class FoodsGroup {
 		this.name = name;
 	}
 
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "group_id")
-	private Set<Foods> f;
+	@OneToMany//(mappedBy = "foodsgroup", cascade = CascadeType.ALL)
+	@JoinTable(name = "FOODS_FOODSGROUP", joinColumns = {
+	@JoinColumn(name = "ID", referencedColumnName = "ID") }, inverseJoinColumns = {
+	@JoinColumn(name = "GROUP_ID", referencedColumnName = "ID") })
+	private Set<Foods> f = new HashSet<Foods>();	
+
 
 	public Long getId() {
 		return id;
@@ -62,4 +69,11 @@ public class FoodsGroup {
 		this.name = name;
 	}
 
+	@Override
+	public String toString() {
+		return "FoodsGroup [id=" + id + ", name=" + name + ", lg=" + f.size() + "]";
+	}
+
+	
+	
 }

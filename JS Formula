@@ -2,7 +2,7 @@
 	var xmlhttp = new XMLHttpRequest();
     xmlhttp.open("POST", "/Foods");
     xmlhttp.setRequestHeader("Content-Type", "application/json");
-    xmlhttp.send(JSON.stringify({name:"Tomate", FoodsGroup:"Légumes", glycIndex:50,energy:2,carboHydrates:8,proteins:12,lipids:9,comment:"essai"    
+    xmlhttp.send(JSON.stringify({name:"Tomate", group_id:1, glycIndex:50,energy:2,carboHydrates:8,proteins:12,lipids:9,comment:"essai"    
     }));
 xmlhttp.response
 	

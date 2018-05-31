@@ -14,38 +14,26 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import co.projetFilrougeCrud.model.Foods;
 import co.projetFilrougeCrud.service.FoodsService;
 
-
-
-
 @Controller
-@RequestMapping ("/Foods")
+@RequestMapping("/Foods")
 public class FoodsController {
 
 	@Inject
-FoodsService foodsService;
-//			
-//	@RequestMapping(method = RequestMethod.GET)
-//	@ResponseBody
-//	public List<Foods> findAll() {
-//		Group group = new Group(1L, "Légumes");
-//		 List<Foods> foods = new ArrayList<Foods>();
-//		 foods.add(new Foods(1L,"Carottes",group , 23.1f, 11.2f, 11.2f, 11.3f, 11.4f, "Commentaires"));
-//		 
-//		 return foods;
-	//	return foodsService.getAll();
-	//}
+	FoodsService foodsService;
 
+	@RequestMapping(method = RequestMethod.GET)
+	@ResponseBody
+	public List<Foods> findAll() {
+		return foodsService.getAll();
+	}
 
-	
 	@RequestMapping(method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
 	@ResponseBody
 	public Long create(@RequestBody Foods resource) {
 		return foodsService.saveFoods(resource).getId();
-		//System.out.println(resource);
-		//return 1L;
+		// System.out.println(resource);
+		// return 1L;
 	}
-
-
 
 }

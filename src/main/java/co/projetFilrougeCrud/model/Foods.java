@@ -25,7 +25,7 @@ public class Foods {
 	@Column(name = "ID")
 	private Long id;
 
-	@Column(name = "NAME")
+	@Column(name = "NAME", nullable = true, length = 255 )
 	private String name;
 
 	@ManyToOne
@@ -82,6 +82,19 @@ public class Foods {
 
 	public Long getId() {
 		return id;
+	}
+
+	
+	public FoodsGroup getGroup() {
+		return group;
+	}
+
+	public void setGroup(FoodsGroup group) {
+		this.group = group;
+	}
+
+	public Calendar getCreateDate() {
+		return createDate;
 	}
 
 	public void setId(Long id) {
@@ -146,11 +159,12 @@ public class Foods {
 
 	@Override
 	public String toString() {
-		return "Foods [id=" + id + ", name=" + name + ", group= , glycIndex=" + glycIndex + ", energy="
+		return "Foods [id=" + id + ", name=" + name + ", group=" + group + ", glycIndex=" + glycIndex + ", energy="
 				+ energy + ", carbohydrates=" + carbohydrates + ", proteins=" + proteins + ", lipids=" + lipids
 				+ ", comment=" + comment + ", createDate=" + createDate + "]";
 	}
 
+	
 	
 
 }
