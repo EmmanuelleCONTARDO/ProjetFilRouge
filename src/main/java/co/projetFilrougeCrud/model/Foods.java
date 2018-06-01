@@ -2,18 +2,21 @@ package co.projetFilrougeCrud.model;
 
 import java.util.Calendar;
 
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.springframework.data.annotation.CreatedDate;
-import org.springframework.lang.NonNull;
+
 
 @Entity
 @Table(name = "FOODS")
@@ -22,15 +25,16 @@ public class Foods {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "foods_generator")
 	@SequenceGenerator(name = "foods_generator", sequenceName = "foods_sequence", allocationSize = 1)
-	@Column(name = "ID")
+	@Column(name = "ID", nullable = false)
 	private Long id;
 
-	@Column(name = "NAME", nullable = true, length = 255 )
+	@Column(name = "NAME", nullable = true, length = 255)
 	private String name;
 
-	@ManyToOne
-	@NonNull
-	private FoodsGroup group;
+	@ManyToOne //(fetch = FetchType.LAZY)
+	@JoinColumn(name = "foodsGroup")
+	// private FoodsGroup group;
+	private FoodsGroup foodsGroup;
 
 	@Column(name = "GLYCINDEX")
 	public float glycIndex;
@@ -67,11 +71,11 @@ public class Foods {
 		this.name = name;
 	}
 
-	public Foods(Long id, String name, FoodsGroup group, float glycIndex, float energy, float carbohydrates, float proteins,
-			float lipids, String comment) {
+	public Foods(Long id, String name, FoodsGroup foodsGroup, float glycIndex, float energy, float carbohydrates,
+			float proteins, float lipids, String comment) {
 		this.id = id;
 		this.name = name;
-		this.group = group;
+		this.foodsGroup = foodsGroup;
 		this.glycIndex = glycIndex;
 		this.energy = energy;
 		this.carbohydrates = carbohydrates;
@@ -84,13 +88,12 @@ public class Foods {
 		return id;
 	}
 
-	
 	public FoodsGroup getGroup() {
-		return group;
+		return foodsGroup;
 	}
 
 	public void setGroup(FoodsGroup group) {
-		this.group = group;
+		this.foodsGroup = group;
 	}
 
 	public Calendar getCreateDate() {
@@ -159,12 +162,9 @@ public class Foods {
 
 	@Override
 	public String toString() {
-		return "Foods [id=" + id + ", name=" + name + ", group=" + group + ", glycIndex=" + glycIndex + ", energy="
+		return "Foods [id=" + id + ", name=" + name + ", group=" + foodsGroup + ", glycIndex=" + glycIndex + ", energy="
 				+ energy + ", carbohydrates=" + carbohydrates + ", proteins=" + proteins + ", lipids=" + lipids
 				+ ", comment=" + comment + ", createDate=" + createDate + "]";
 	}
-
-	
-	
 
 }
