@@ -35,6 +35,7 @@ public class FoodsServiceImpl implements FoodsService {
 	}
 
 	public List<Foods> findByName(String name) {
+	System.out.println("name imp ="+ name);
 		return foodsRepository.findByName(name);
 	}
 }

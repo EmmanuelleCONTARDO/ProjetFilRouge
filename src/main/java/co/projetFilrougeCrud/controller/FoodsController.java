@@ -33,12 +33,7 @@ public class FoodsController {
 		return foodsService.getAll();
 	}
 
-	// Recherche par ID
-	@RequestMapping(value = "/{id}", method = RequestMethod.POST)
-	@ResponseBody
-	public Optional<Foods> findById(Long id) {
-		return foodsService.findById(id);
-	}
+
 	
 	@RequestMapping(method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
@@ -65,7 +60,17 @@ public class FoodsController {
 	// Recherche par nom de l'aliment
 	@RequestMapping(value = "/{name}", method = RequestMethod.GET)
 	@ResponseBody
-		public List<Foods> findByName(@Param("name") String name) {
-		return foodsService.findByName("%"+name+"%");
+		public List<Foods> findByName(@PathVariable(value="name") String name) {
+		System.out.println("name = " + name);
+		return foodsService.findByName(name);
 	}
+	
+	// Recherche par ID
+//	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+//	@ResponseBody
+//	public Optional<Foods> findById(Long id) {
+//		System.out.println("ID: "+ id);
+//		return foodsService.findById(id);
+//	}
+	
 }
