@@ -1,31 +1,41 @@
-	
+CREATE A FOOD
 	var xmlhttp = new XMLHttpRequest();
     xmlhttp.open("POST", "/Foods");
     xmlhttp.setRequestHeader("Content-Type", "application/json");
-    xmlhttp.send(JSON.stringify({name:"Tomate", group_id:1, glycIndex:50,energy:2,carboHydrates:8,proteins:12,lipids:9,comment:"essai"    
+    xmlhttp.send(JSON.stringify({name:"Abricots", group : {id:3}, glycIndex:50,energy:2,carboHydrates:8,proteins:12,lipids:9,comment:"essai"    
     }));
 xmlhttp.response
+
 	
-	
+CREATE A GROUP
 	var xmlhttp = new XMLHttpRequest();
     xmlhttp.open("POST", "/FoodsGroup/");
     xmlhttp.setRequestHeader("Content-Type", "application/json");
-    xmlhttp.send(JSON.stringify({name:"Fruits rouges", }));
+    xmlhttp.send(JSON.stringify({name:"Fruits rouges" }));
 xmlhttp.response
 
 
-Méthode delete
+DELETE 1 FOOD
 	var xmlhttp = new XMLHttpRequest();
-	xmlhttp.open("DELETE", "/foods/1");
+	xmlhttp.open("DELETE", "/Foods/1");
 	xmlhttp.setRequestHeader("Content-Type", "application/json");
 	xmlhttp.send(JSON.stringify({}));
 xmlhttp.response
 	
 	
-Add id group
+ADD ID GROUP
 	var xmlhttp = new XMLHttpRequest();
     xmlhttp.open("POST", "/Foods");
     xmlhttp.setRequestHeader("Content-Type", "application/json");
     xmlhttp.send(JSON.stringify({name:"Tomate", group : {id:1}, glycIndex:50,energy:2,carboHydrates:8,proteins:12,lipids:9,comment:"essai"    
     }));
+xmlhttp.response
+
+
+
+UPDATE FOOD (Mise à jour du FoodsGroup) :
+	var xmlhttp = new XMLHttpRequest();
+	xmlhttp.open("PUT", "/Foods/1");
+	xmlhttp.setRequestHeader("Content-Type", "application/json");
+	xmlhttp.send(JSON.stringify({group : {id:1}}));
 xmlhttp.response
